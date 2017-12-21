@@ -29,6 +29,7 @@ int verify_board(int **board, int size_of_board)
 //BOARD MOVEMENTS
 void move_board_left(int **board, int size_of_board)
 {
+	
 
 }
 void move_board_right(int **board, int size_of_board)
@@ -98,9 +99,10 @@ void show_board(int **board,int size_of_board)
 		printf("\n\n");
 	}
 	
-	scanf_s("%c[^\n]", &move_option);
+//	scanf_s("%c[^\n]", &move_option);
 	while(verify_board(board, size_of_board))
 	{
+		printf("Enter your Move W A S D:\n");
 		scanf_s("%c[^\n]", &move_option);
 		if (move_option == 'W' || move_option == 'w')
 			move_board_top(board, size_of_board);
