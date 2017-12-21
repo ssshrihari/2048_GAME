@@ -198,11 +198,11 @@ int verify_board(int **board, int size_of_board)
 			printf("\n\n");
 		}
 
-		//	scanf_s("%c[^\n]", &move_option);
+		//	scanf_s(" %c", &move_option);
 		while (verify_board(board, size_of_board))
 		{
 			printf("Enter your Move W A S D:\n");
-			scanf_s("%c[^\n]", &move_option);
+			scanf_s(" %c", &move_option);
 			if (move_option == 'W' || move_option == 'w')
 				move_board_top(board, size_of_board);
 			else if (move_option == 'S' || move_option == 's')
@@ -226,11 +226,11 @@ int verify_board(int **board, int size_of_board)
 		printf("\n INSTRUCTION");
 		printf("\n The user can play by pressing, W,A,S,D for up,left,down and right.\n Enter W to continue");
 
-		scanf_s("%c[^\n]", &inst_option);
+		scanf_s(" %c", &inst_option);
 		while (inst_option != 'W' && inst_option != 'w')
 		{
 			printf(" \nPlease enter W \n");
-			scanf_s("%c[^\n]", &inst_option);
+			scanf_s(" %c", &inst_option);
 
 		}
 		return inst_option;
@@ -298,11 +298,11 @@ int verify_board(int **board, int size_of_board)
 		system("cls");
 		printf("\n Choose");
 		printf("\n 1.Play Game\n\n");
-		scanf_s("%d", &option);
+		scanf_s(" %d", &option);
 		while (option != 1)
 		{
 			printf("\n Enter correct option");
-			scanf_s("%d", &option);
+			scanf_s(" %d", &option);
 		}
 		system("cls");
 	}
@@ -316,12 +316,12 @@ int verify_board(int **board, int size_of_board)
 
 		printf(" Choose the board");
 		printf("\n 1:2*2 \n 2:4*4\n\n");
-		scanf_s("%d[^\n]", &board_option);
+		scanf_s(" %d", &board_option);
 
 		while (board_option != 1 && board_option != 2)
 		{
 			printf("\nEnter correct option");
-			scanf_s("%d", &board_option);
+			scanf_s(" %d", &board_option);
 		}
 
 		system("cls");
