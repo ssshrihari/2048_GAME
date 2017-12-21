@@ -8,18 +8,70 @@
 #include<conio.h>
 
 int moves = 0;
+//FIBBONACI CHECK
+int *fibonacci_check(int number)
+{
+	int *a=(int*)callac(2,sizeof(int));
+	int fib[17]={1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597};
+	for(i=1;i<16;i++)
+	{
+		if(number==fib[i])
+		{
+			a[0]=fib[i-1];
+		         a[1]=fib[i+1];
+		}
+	}
+	return a;
+}
+		
+	
 //BOARD VERIFICATION
 int verify_board(int **board, int size_of_board)
 {
-	moves++;
+	
+        int zero=0,loose_var=0;
+        for(i=0;i<size_of_board;i++)
+         	{
+	   for(j=0;j<size_of_board;j++)
+		 {
+		    if(size_of_board==2&&board[i][j]==13)
+		        { 
+			    printf("YOU WIN IN %d MOVES", moves);
+	                     return 0;
+		        }
+		   
+		    if(size_of_board==4&&board[i][j]==1597)
+		        { 
+			    printf("YOU WIN IN %d MOVES", moves);
+	                     return 0;
+		        }
+		   if(board[i][j]==0)
+			   zero++;
+		   
+	   }
+			
 
-
-
-	printf("YOU WIN IN %d MOVES", moves);
-	return 0;
-
-	printf("YOU LOOSE IN %d MOVES", moves);
-	return 0;
+	if(!zero)
+	{
+		for(i=0;i<size_of_board;i++)
+		{
+			for(j=0;j<size_of_board;j++)
+			{
+				*adjacent=fibonacci_check(a[i][j]);
+				if(check_adjacent(adjacent))
+					break;
+				else
+					loose_var++;
+			}
+		}
+	}
+		
+			
+		if(loose_var==(size_of_board*size_of_board))
+		{
+			printf("YOU LOOSE IN %d MOVES", moves);
+                 	return 0;
+		}
 	
 	return 1;
 }
@@ -29,19 +81,62 @@ int verify_board(int **board, int size_of_board)
 //BOARD MOVEMENTS
 void move_board_left(int **board, int size_of_board)
 {
-	
+	int flag=0,i,j;
+	int *temp=(int*)calloc(size_of_board,sizeof(int))
+    	for(i=0;i<size_of_board;i++)
+       	{
+		for(j=0;j<size_of_board;j++)
+		{
+			if(board[i][j]!=0)
+				temp[k++]=board[i][j];
+				
+				
+			
+		}
+		for(j=0;j<size_of_board;j++)
+		{
+			board[i][j]=temp[j];
+		}
+	}
+      
 
+	
+	moves++;
 }
 void move_board_right(int **board, int size_of_board)
 {
+	int flag=0,i,j;
+	int *temp=(int*)calloc(size_of_board,sizeof(int))
+		int k;
+	k=size_of_board-1;
+    	for(i=0;i<size_of_board;i++)
+       	{
+		for(j=0;j<size_of_board;j++)
+		{
+			if(board[i][j]!=0)
+				temp[k--]=board[i][j];
+				
+				
+			
+		}
+		for(j=size_of_board-1;j>=0;j--)
+		{
+			board[i][j]=temp[j];
+		}
+	}
+      
 
+	
+	moves++;
 }
 void move_board_top(int **board, int size_of_board)
 {
 
+	moves++;
 }
 void move_board_bottom(int **board, int size_of_board)
 {
+	moves++;
 
 }
 
