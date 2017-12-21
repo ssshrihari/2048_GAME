@@ -6,13 +6,13 @@
 #include<stdlib.h>
 #include<time.h>
 #include<conio.h>
-
-int moves = 0;
+void show_board(int **board, int size_of_board);
+int fib[17] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597 }, moves = 0;
 //FIBBONACI CHECK
-int *fibonacci_check(int number)
+int *fibonacci_check(int number)	
 {
 	int *a = (int*)calloc(2, sizeof(int));
-	int fib[17] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597 },i;
+	int i;
 	for (i = 1; i<16; i++)
 	{
 		if (number == fib[i])
@@ -84,54 +84,87 @@ int verify_board(int **board, int size_of_board)
 
 }
 	//BOARD MOVEMENTS
-	void move_board_left(int **board, int size_of_board)
+void move_board_left(int **board, int size_of_board)
+{
+	int flag = 0, i, j, k = 0, l;
+	int *temp1 = (int*)calloc(size_of_board, sizeof(int));
+	int *temp = (int*)calloc(size_of_board, sizeof(int));
+	for (i = 0; i < size_of_board; i++)
 	{
-		int flag = 0, i, j,k=0;
-		int *temp = (int*)calloc(size_of_board, sizeof(int));
-			for (i = 0; i<size_of_board; i++)
-			{
-				for (j = 0; j<size_of_board; j++)
+		k = 0;
+		for (j = 0; j < size_of_board; j++)
+		{
+			if (board[i][j] != 0)
+				temp[k++] = board[i][j];
+
+		}
+		
+		for (j = 0; j < size_of_board; j += 2)
+		{
+			for (l = 0; l < 16; l++)
+				if (temp[j] + temp[j + 1] == fib[l])
 				{
-					if (board[i][j] != 0)
-						temp[k++] = board[i][j];
-
+					temp[j] = fib[l];
+					temp[j + 1] = 0;
+					break;
 				}
-				for (j = 0; j<size_of_board; j++)
-				{
-					board[i][j] = temp[j];
-				}
-			}
+		}
+		k = 0;
+		for (j = 0; j < size_of_board; j++)
+		{
+			if (temp[j] != 0)
+				temp1[k++] = temp[j];
+		}
+		for (j = 0; j < size_of_board; j++)
+		{
 
-
-
-		moves++;
-	}
-
+			board[i][j] = temp1[j];
+		}
+		
+	}//for i end
+	moves++;
+	show_board(board, size_of_board);
+}//function end
 	void move_board_right(int **board, int size_of_board)
 	{
-		int flag = 0, i, j;
+		int flag = 0, i, j,l;
 		int *temp = (int*)calloc(size_of_board, sizeof(int));
+		int *temp1 = (int*)calloc(size_of_board, sizeof(int));
 			int k;
 		k = size_of_board - 1;
 		for (i = 0; i<size_of_board; i++)
 		{
-			for (j = 0; j<size_of_board; j++)
+			k = size_of_board - 1;
+			for (j = size_of_board-1; j>=0; j--)
 			{
 				if (board[i][j] != 0)
 					temp[k--] = board[i][j];
-
-
-
+			}
+			
+			for (j = size_of_board - 1; j>=0; j-=2)
+			{
+				for (l = 0; l < 16; l++)
+					if (temp[j] + temp[j - 1] == fib[l])
+					{
+						temp[j] = fib[l];
+						temp[j - 1] = 0;
+						break;
+					}
+			}
+			k = size_of_board - 1;
+			for (j = size_of_board - 1; j >= 0; j--)
+			{
+				if (temp[j] != 0)
+					temp1[k--] = temp[j];
 			}
 			for (j = size_of_board - 1; j >= 0; j--)
 			{
-				board[i][j] = temp[j];
+				board[i][j] = temp1[j];
 			}
 		}
 
-
-
 		moves++;
+		show_board(board, size_of_board);
 	}
 	void move_board_top(int **board, int size_of_board)
 	{
@@ -197,8 +230,8 @@ int verify_board(int **board, int size_of_board)
 			}
 			printf("\n\n");
 		}
-
-		//	scanf_s(" %c", &move_option);
+		printf("Enter your Move W A S D:\n");
+		scanf_s(" %c", &move_option);
 		while (verify_board(board, size_of_board))
 		{
 			printf("Enter your Move W A S D:\n");
@@ -221,19 +254,11 @@ int verify_board(int **board, int size_of_board)
 	//INSTRUCTION
 	char instructions()
 	{
-		char inst_option;
 		printf("\n ||BEFORE STARTING THE GAME||\n\n");
 		printf("\n INSTRUCTION");
-		printf("\n The user can play by pressing, W,A,S,D for up,left,down and right.\n Enter W to continue");
+		printf("\n The user can play by pressing, W,A,S,D for up,left,down and right.\n");
 
-		scanf_s(" %c", &inst_option);
-		while (inst_option != 'W' && inst_option != 'w')
-		{
-			printf(" \nPlease enter W \n");
-			scanf_s(" %c", &inst_option);
-
-		}
-		return inst_option;
+		return 'W';
 	}
 
 
@@ -256,7 +281,7 @@ int verify_board(int **board, int size_of_board)
 		board[position_1][position_2] = 1;
 		board[position_3][position_4] = 1;
 		option = instructions();
-		if (option == 'W' || option == 'w')
+		if (option == 'W')
 			show_board(board, size_of_board);
 
 	}
