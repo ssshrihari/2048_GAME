@@ -24,10 +24,74 @@ int *fibonacci_check(int number)
 	return a;
 }
 //CHECK ADJACENT ELEMENTS
-int check_adjacent(int *adjacent, int **board,int row,int column)
+int check_adjacent(int *adjacent, int **board, int i, int j,int size)    
 {
-	return 0;
+	if (i == 0 && j == 0)
+	{
+		if ((board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i == 0 && j == size - 1)
+	{
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i == size && j == 0)
+	{
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i == size - 1 && j == size - 1)
+	{
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i == 0 && j != 0)
+	{
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i != 0 && j == 0)
+	{
+		if ((board[i - 1][j] = adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i == 3 && j != 0)
+	{
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]) || (board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else if (i != 0 && j == 3)
+	{
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
+			return 1;
+		else
+			return 0;
+	}
+	else
+	{
+		if (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1] || board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1] || board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1] || board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+			return 1;
+		else
+			return 0;
+	}
 }
+	
+
 
 //BOARD VERIFICATION
 int verify_board(int **board, int size_of_board)
