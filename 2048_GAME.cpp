@@ -7,7 +7,8 @@
 #include<time.h>
 #include<conio.h>
 void show_board(int **board, int size_of_board);
-int fib[17] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597 }, moves = 0;
+int fib[17] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377,
+610, 987, 1597 }, moves = 0;
 //FIBBONACI CHECK
 int *fibonacci_check(int number)
 {
@@ -28,63 +29,78 @@ int check_adjacent(int *adjacent, int **board, int i, int j, int size)
 {
 	if (i == 0 && j == 0)
 	{
-		if ((board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+		if ((board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+			|| (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i == 0 && j == size - 1)
 	{
-		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]))
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1])
+			|| (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i == size - 1 && j == 0)
 	{
-		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1])
+			|| (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i == size - 1 && j == size - 1)
 	{
-		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1])
+			|| (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i == 0 && j != 0)
 	{
-		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1])
+			|| (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+			|| (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i != 0 && j == 0)
 	{
-		if ((board[i - 1][j] = adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
+		if ((board[i - 1][j] = adjacent[0] || board[i - 1][j] == adjacent[1])
+			|| (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+			|| (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i == 3 && j != 0)
 	{
-		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]) || (board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]))
+		if ((board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1])
+			|| (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1])
+			|| (board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else if (i != 0 && j == 3)
 	{
-		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1]) || (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
+		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1])
+			|| (board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+			|| (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]))
 			return 1;
 		else
 			return 0;
 	}
 	else
 	{
-		if (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1] || board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1] || board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1] || board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
+		if (board[i][j - 1] == adjacent[0] || board[i][j - 1] == adjacent[1]
+			|| board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1] ||
+			board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1] ||
+			board[i + 1][j] == adjacent[0] || board[i + 1][j] == adjacent[1])
 			return 1;
 		else
 			return 0;
@@ -106,12 +122,14 @@ int verify_board(int **board, int size_of_board)
 			if (size_of_board == 2 && board[i][j] == 13)
 			{
 				printf("YOU WIN IN %d MOVES", moves);
+				getchar();
 				return 0;
 			}
 
 			if (size_of_board == 4 && board[i][j] == 1597)
 			{
 				printf("YOU WIN IN %d MOVES", moves);
+				getchar();
 				return 0;
 			}
 			if (board[i][j] == 0)
@@ -119,7 +137,7 @@ int verify_board(int **board, int size_of_board)
 
 		}
 
-
+	}
 		if (!zero)
 		{
 			for (i = 0; i < size_of_board; i++)
@@ -139,6 +157,7 @@ int verify_board(int **board, int size_of_board)
 		if (loose_var == (size_of_board*size_of_board))
 		{
 			printf("YOU LOOSE IN %d MOVES", moves);
+			getchar();
 			return 0;
 		}
 
@@ -146,6 +165,26 @@ int verify_board(int **board, int size_of_board)
 	}
 
 
+
+//RANDOM POSITION IN BOARD
+void random_pos_board(int **board, int size_of_board)
+{
+	int z = 0,i,j;
+	for (i = 0; i < size_of_board; i++)
+	{
+		for (j = 0; j < size_of_board; j++)
+		{
+			if (board[i][j] == 0)
+			{
+				board[i][j] = 1;
+				z = 1;
+				break;
+			}
+		}
+		if (z == 1)
+			break;
+	}
+	show_board(board, size_of_board);
 }
 //BOARD MOVEMENTS
 void move_board_left(int **board, int size_of_board)
@@ -163,7 +202,7 @@ void move_board_left(int **board, int size_of_board)
 
 		}
 
-		for (j = 0; j < size_of_board; j += 2)
+		for (j = 0; j < size_of_board; j++)
 		{
 			for (l = 0; l < 16; l++)
 				if (temp[j] + temp[j + 1] == fib[l])
@@ -187,14 +226,14 @@ void move_board_left(int **board, int size_of_board)
 		for (j = 0; j < size_of_board; j++)
 		{
 
-			temp1[j]=0;
+			temp1[j] = 0;
 			temp[j] = 0;
 		}
 
 
 	}//for i end
 	moves++;
-	show_board(board, size_of_board);
+	random_pos_board(board, size_of_board);
 }//function end
 void move_board_right(int **board, int size_of_board)
 {
@@ -212,7 +251,7 @@ void move_board_right(int **board, int size_of_board)
 				temp[k--] = board[i][j];
 		}
 
-		for (j = size_of_board - 1; j >= 0; j -= 2)
+		for (j = size_of_board - 1; j >= 0; j--)
 		{
 			for (l = 0; l < 16; l++)
 				if (temp[j] + temp[j - 1] == fib[l])
@@ -241,7 +280,8 @@ void move_board_right(int **board, int size_of_board)
 	}
 
 	moves++;
-	show_board(board, size_of_board);
+	random_pos_board(board, size_of_board);
+	
 }
 void move_board_top(int **board, int size_of_board)
 {
@@ -252,20 +292,20 @@ void move_board_top(int **board, int size_of_board)
 	k = 0;
 	for (j = 0; j<size_of_board; j++)
 	{
-		k =0;
+		k = 0;
 		for (i = size_of_board - 1; i >= 0; i--)
 		{
 			if (board[i][j] != 0)
 				temp[k++] = board[i][j];
 		}
 
-		for (i = size_of_board - 1; i >= 0; i -= 2)
+		for (i = 0; i <size_of_board; i ++)
 		{
 			for (l = 0; l < 16; l++)
-				if (temp[i] + temp[i - 1] == fib[l])
+				if (temp[i] + temp[i + 1] == fib[l])
 				{
 					temp[i] = fib[l];
-					temp[i - 1] = 0;
+					temp[i + 1] = 0;
 					break;
 				}
 		}
@@ -288,7 +328,8 @@ void move_board_top(int **board, int size_of_board)
 	}
 
 	moves++;
-	show_board(board, size_of_board);
+	random_pos_board(board, size_of_board);
+	
 }
 void move_board_bottom(int **board, int size_of_board)
 {
@@ -297,7 +338,7 @@ void move_board_bottom(int **board, int size_of_board)
 	int *temp = (int*)calloc(size_of_board, sizeof(int));
 	for (j = 0; j < size_of_board; j++)
 	{
-		k = size_of_board-1;
+		k = size_of_board - 1;
 		for (i = 0; i < size_of_board; i++)
 		{
 			if (board[i][j] != 0)
@@ -305,7 +346,7 @@ void move_board_bottom(int **board, int size_of_board)
 
 		}
 
-		for (i = size_of_board-1; i>=0; i -= 2)
+		for (i = size_of_board - 1; i >= 0; i -= 2)
 		{
 			for (l = 0; l < 16; l++)
 				if (temp[i] + temp[i - 1] == fib[l])
@@ -315,13 +356,13 @@ void move_board_bottom(int **board, int size_of_board)
 					break;
 				}
 		}
-		k = size_of_board-1;
-		for (i = size_of_board-1; i >=0; i--)
+		k = size_of_board - 1;
+		for (i = size_of_board - 1; i >= 0; i--)
 		{
 			if (temp[i] != 0)
 				temp1[k--] = temp[i];
 		}
-		for (i = size_of_board-1; i >=0; i--)
+		for (i = 0; i <size_of_board; i++)
 		{
 
 			board[i][j] = temp1[i];
@@ -336,7 +377,7 @@ void move_board_bottom(int **board, int size_of_board)
 
 	}//for i end
 	moves++;
-	show_board(board, size_of_board);
+	random_pos_board(board, size_of_board);
 
 }
 
@@ -401,7 +442,7 @@ void game_play(int **board, int size_of_board)
 void show_board(int **board, int size_of_board)
 {
 	int i, j;
-	
+
 	for (i = 0; i < size_of_board; i++)
 	{
 		for (j = 0; j < size_of_board; j++)
@@ -422,7 +463,7 @@ char instructions()
 	printf("\n INSTRUCTION");
 	printf("\n The user can play by pressing, W,A,S,D for up,left,down and right.\n");
 
-	return 'W';
+		return 'W';
 }
 
 
@@ -471,7 +512,7 @@ void four_by_four(int size_of_board)
 	}
 	board[position_1][position_2] = 1;
 	board[position_3][position_4] = 1;
-	
+
 	option = instructions();
 	if (option == 'W')
 	{
@@ -537,3 +578,5 @@ int main()
 	getchar();
 	return 0;
 }
+
+
