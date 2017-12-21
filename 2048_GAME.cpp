@@ -40,7 +40,7 @@ int check_adjacent(int *adjacent, int **board, int i, int j,int size)
 		else
 			return 0;
 	}
-	else if (i == size && j == 0)
+	else if (i == size-1 && j == 0)
 	{
 		if ((board[i - 1][j] == adjacent[0] || board[i - 1][j] == adjacent[1]) || (board[i][j + 1] == adjacent[0] || board[i][j + 1] == adjacent[1]))
 			return 1;
