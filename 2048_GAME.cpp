@@ -245,12 +245,98 @@ void move_board_right(int **board, int size_of_board)
 }
 void move_board_top(int **board, int size_of_board)
 {
+	int flag = 0, i, j, l;
+	int *temp = (int*)calloc(size_of_board, sizeof(int));
+	int *temp1 = (int*)calloc(size_of_board, sizeof(int));
+	int k;
+	k = 0;
+	for (j = 0; j<size_of_board; j++)
+	{
+		k =0;
+		for (i = size_of_board - 1; i >= 0; i--)
+		{
+			if (board[i][j] != 0)
+				temp[k++] = board[i][j];
+		}
+
+		for (i = size_of_board - 1; i >= 0; i -= 2)
+		{
+			for (l = 0; l < 16; l++)
+				if (temp[i] + temp[i - 1] == fib[l])
+				{
+					temp[i] = fib[l];
+					temp[i - 1] = 0;
+					break;
+				}
+		}
+		k = 0;
+		for (i = size_of_board - 1; i >= 0; i--)
+		{
+			if (temp[i] != 0)
+				temp1[k++] = temp[i];
+		}
+		for (i = 0; i < size_of_board; i++)
+		{
+			board[i][j] = temp1[i];
+		}
+		for (i = 0; i < size_of_board; i++)
+		{
+
+			temp1[i] = 0;
+			temp[i] = 0;
+		}
+	}
 
 	moves++;
+	show_board(board, size_of_board);
 }
 void move_board_bottom(int **board, int size_of_board)
 {
+	int flag = 0, i, j, k = 0, l;
+	int *temp1 = (int*)calloc(size_of_board, sizeof(int));
+	int *temp = (int*)calloc(size_of_board, sizeof(int));
+	for (j = 0; j < size_of_board; j++)
+	{
+		k = size_of_board-1;
+		for (i = 0; i < size_of_board; i++)
+		{
+			if (board[i][j] != 0)
+				temp[k--] = board[i][j];
+
+		}
+
+		for (i = size_of_board-1; i>=0; i -= 2)
+		{
+			for (l = 0; l < 16; l++)
+				if (temp[i] + temp[i - 1] == fib[l])
+				{
+					temp[i] = fib[l];
+					temp[i - 1] = 0;
+					break;
+				}
+		}
+		k = size_of_board-1;
+		for (i = size_of_board-1; i >=0; i--)
+		{
+			if (temp[i] != 0)
+				temp1[k--] = temp[i];
+		}
+		for (i = size_of_board-1; i >=0; i--)
+		{
+
+			board[i][j] = temp1[i];
+		}
+		for (i = 0; i < size_of_board; i++)
+		{
+
+			temp1[i] = 0;
+			temp[i] = 0;
+		}
+
+
+	}//for i end
 	moves++;
+	show_board(board, size_of_board);
 
 }
 
@@ -303,7 +389,7 @@ void game_play(int **board, int size_of_board)
 		if (move_option == 'W' || move_option == 'w')
 			move_board_top(board, size_of_board);
 		else if (move_option == 'S' || move_option == 's')
-			move_board_top(board, size_of_board);
+			move_board_bottom(board, size_of_board);
 		else if (move_option == 'A' || move_option == 'a')
 			move_board_left(board, size_of_board);
 		else if (move_option == 'D' || move_option == 'd')
@@ -385,6 +471,7 @@ void four_by_four(int size_of_board)
 	}
 	board[position_1][position_2] = 1;
 	board[position_3][position_4] = 1;
+	
 	option = instructions();
 	if (option == 'W')
 	{
