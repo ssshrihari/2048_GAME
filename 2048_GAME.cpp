@@ -127,7 +127,7 @@ int verify_board(int **board, int size_of_board)
 				for (j = 0; j < size_of_board; j++)
 				{
 					adjacent = fibonacci_check(board[i][j]);
-					if (check_adjacent(adjacent,board,i,j))
+					if(check_adjacent(adjacent,board,i,j,size_of_board))
 						break;
 					else
 						loose_var++;
