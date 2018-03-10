@@ -1,4 +1,4 @@
-// 2048_GAME.cpp : Defines the entry point for the console application.
+
 //Author:Shrihari shetty
 
 //HEADER FILES
